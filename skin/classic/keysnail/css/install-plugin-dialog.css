@@ -1,0 +1,50 @@
+description#plugin-info-name, description#plugin-info-version {
+    font-size: 130%;
+}
+
+description#plugin-info-name {
+    font-weight: bold;
+}
+
+description#plugin-info-description {
+    font-size: 105%;
+}
+
+description.notice {
+    font-weight: bold;
+    font-size: 105%;
+    margin: 2px 0;
+}
+
+description.script-name {
+    font-size: 105%;
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+description.script-author {
+    font-size: 105%;
+}
+
+description.script-url {
+    color: #be0020;
+}
+
+richlistbox#plugin-script-list {
+    margin-bottom: 8px;
+}
+
+richlistbox#plugin-script-list richlistitem {
+    padding: 8px 5px;
+    border-bottom:1px #BBB dotted;
+}
+
+richlistbox#plugin-script-list richlistitem:last-child {
+    border-bottom: none;
+}
+
+image#plugin-info-icon {
+    margin: 0 7px;
+    width: 32px;
+    height: 32px;
+}

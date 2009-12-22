@@ -1,0 +1,30 @@
+/* -moz-image-region: rect(top, right, bottom, left); */
+
+radio[pane="prefpane-rcfile"] {
+    list-style-image: url("chrome://keysnail/skin/script.png");
+}
+
+radio[pane="prefpane-keys"] {
+    list-style-image: url("chrome://keysnail/skin/keys.png");
+}
+
+radio[pane="prefpane-about"] {
+    list-style-image: url("chrome://keysnail/skin/about.png");
+}
+
+treechildren::-moz-tree-cell-text {
+    margin-left: 6px;
+    margin-right: 2px;
+}
+
+.long-description {
+    /* max-width: 600px; */
+}
+
+textbox.keysnail-specialkey-textbox {
+    width: 7em;
+}
+
+button.keysnail-specialkey-button {
+    width: 4em;
+}

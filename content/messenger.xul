@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://keysnail/skin/css/prompt.css" type="text/css"?>
+
+<!DOCTYPE dialog SYSTEM "chrome://keysnail/locale/statusbar.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <!-- tool menu -->
+    <menupopup id="menu_ToolsPopup">
+        <menu id="keysnail-tool-menu"
+              label="KeySnail"
+              insertbefore="devToolsSeparator"
+              accesskey="k"
+              >
+            <menupopup onpopupshowing="KeySnail.Key.updateToolMenu();"
+                       >
+	        <menuitem id="keysnail-tool-menu-status"
+                          label="&keySnail.statusbar.isEnabled;"
+                          accesskey="t"
+                          type="checkbox"
+		          oncommand="KeySnail.Key.toggleStatus();"/>
+	        <menuitem id="keysnail-tool-menu-open-preference"
+	                  label="&keySnail.statusbar.openPreference;"
+                          accesskey="c"
+	                  oncommand="KeySnail.openPreference();"
+                          />
+	        <menuitem id="keysnail-tool-menu-open-plugin-manager"
+	                  label="&keySnail.statusbar.openPluginManager;"
+	                  accesskey="o"
+	                  oncommand="KeySnail.UserScript.openPluginManager();"
+	                  />
+                <menuseparator/>
+	        <menuitem id="keysnail-tool-menu-reload-userscript"
+		          label="&keySnail.statusbar.reloadUserScript;"
+                          accesskey="r"
+		          oncommand="KeySnail.UserScript.reload();"
+                          />
+	        <menuitem id="keysnail-tool-menu-list-keybinds"
+		          label="&keySnail.statusbar.listKeyBindings;"
+                          accesskey="v"
+		          oncommand="KeySnail.Key.listKeyBindings();"/>
+                <menuseparator/>
+	        <menuitem id="keysnail-tool-menu-edit-init-file"
+	                  label="&keySnail.statusbar.editInitFile;"
+                          accesskey="e"
+	                  oncommand="KeySnail.UserScript.editInitFile();"
+                          />
+	        <menuitem id="keysnail-tool-menu-open-wizard"
+	                  label="&keySnail.statusbar.wizard;"
+                          accesskey="w"
+	                  oncommand="KeySnail.UserScript.beginRcFileWizard();"
+                          />
+            </menupopup>
+        </menu>
+    </menupopup>
+
+    <!-- status bar overlay -->
+    <statusbar id="status-bar">
+        <statusbarpanel id="keysnail-status" context="keysnail-menu">
+            <image id="keysnail-statusbar-icon"
+	           src="chrome://keysnail/skin/icon16gray.png"
+                   onmouseup="if (event.button == 0)
+                              KeySnail.Key.toggleStatus();"/>
+        </statusbarpanel>
+        <menupopup id="keysnail-menu"
+                   onpopupshowing="KeySnail.Key.updateMenu();">
+	    <menuitem id="keysnail-menu-reload-userscript"
+		      label="&keySnail.statusbar.reloadUserScript;"
+                      accesskey="r"
+		      oncommand="KeySnail.UserScript.reload();"
+                      class="menuitem-iconic"
+                      src="chrome://keysnail/skin/icon/reload.png"/>
+            <menuseparator/>
+	    <menuitem id="keysnail-menu-list-keybinds"
+		      label="&keySnail.statusbar.listKeyBindings;"
+                      accesskey="v"
+		      oncommand="KeySnail.Key.listKeyBindings();"/>
+            <!-- init file -->
+            <menu id="keysnail-menu-init-file" label="&keySnail.statusbar.initFile;"
+                  accesskey="i">
+                <menupopup id="keysnail-menu-settings-submenu">
+	            <menuitem id="keysnail-menu-edit-init-file"
+	                      label="&keySnail.statusbar.editInitFile;"
+	                      accesskey="e"
+	                      oncommand="KeySnail.UserScript.editInitFile();"
+	                      class="menuitem-iconic"
+	                      src="chrome://keysnail/skin/icon/edit.png"/>
+	                      <menuitem id="keysnail-menu-open-wizard"
+	                      label="&keySnail.statusbar.wizard;"
+	                      accesskey="w"
+	                      oncommand="KeySnail.UserScript.beginRcFileWizard();"
+	                      class="menuitem-iconic"
+	                      src="chrome://keysnail/skin/icon/create.png"/>
+                </menupopup>
+            </menu>
+            <!-- plugin -->
+	    <menuitem id="keysnail-menu-open-plugin-manager"
+	              label="&keySnail.statusbar.openPluginManager;"
+	              accesskey="o"
+	              oncommand="KeySnail.UserScript.openPluginManager();"
+                      class="menuitem-iconic"
+                      src="chrome://keysnail/skin/icon/plugin.png"
+	              />
+	    <menuitem id="keysnail-menu-open-preference"
+	              label="&keySnail.statusbar.openPreference;"
+                      accesskey="c"
+	              oncommand="KeySnail.openPreference();"
+                      class="menuitem-iconic"
+                      src="chrome://keysnail/skin/icon/preference.png"/>
+            <menuseparator/>
+	    <menuitem id="keysnail-menu-status"
+                      label="&keySnail.statusbar.isEnabled;"
+                      accesskey="t"
+                      type="checkbox"
+		      oncommand="KeySnail.Key.toggleStatus();"/>
+        </menupopup>
+    </statusbar>
+
+    <!-- prompt -->
+    <vbox id="browser-bottombox">
+        <menupopup id="keysnail-prompt-menu" />
+        <listbox id="keysnail-completion-list"
+                 hidden="true"
+                 insertafter="status-bar">
+        </listbox>
+        <hbox id="keysnail-prompt"
+              insertafter="keysnail-completion-list" hidden="true"
+              align="center">
+            <label class="keysnail-prompt-label" id="keysnail-prompt-label" />
+            <textbox id="keysnail-prompt-textbox" flex="1" />
+            <toolbarbutton id="keysnail-prompt-toggle-edit-mode-button"
+                           oncommand="KeySnail.modules.prompt.toggleEditMode();" />
+            <toolbarbutton id="keysnail-prompt-close-button"
+                           class="tab-close-button"
+                           tooltiptext="&keySnail.statusbar.closePrompt;"
+                           oncommand="KeySnail.modules.prompt.finish(true);" />
+        </hbox>
+    </vbox>
+
+</overlay>

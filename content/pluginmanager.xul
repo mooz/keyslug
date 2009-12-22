@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://keysnail/skin/css/plugin-manager.css"?>
+
+<!DOCTYPE dialog SYSTEM "chrome://keysnail/locale/pluginmanager.dtd">
+
+<window id="keysnail-plugin-manager"
+        title="&keySnail.pluginManager.title;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        onload="ksPluginManager.onLoad();"
+        >
+    <hbox flex="1">
+        <!-- plugin list -->
+        <vbox flex="1" id="plugin-area">
+            <richlistbox id="plugin-listbox" flex="1"
+                         onselect="ksPluginManager.pluginListboxOnSelect(event);"
+                         >
+            </richlistbox>
+            <hbox align="center" id="plugin-button-container">
+                <button label="&keySnail.pluginManager.reloadPlugins;"
+                        oncommand="ksPluginManager.reloadPlugin();"
+                        accesskey="r"/>
+                <button label="&keySnail.pluginManager.installPlugin;"
+                        oncommand="ksPluginManager.installPlugin();"
+                        accesskey="i"/>
+            </hbox>
+        </vbox>
+        <!-- plugin detail -->
+        <vbox id="plugin-detail" flex="8">
+            <iframe id="plugin-description"
+                    src="chrome://keysnail/content/buffer.xhtml"
+                    flex="1"/>
+        </vbox>
+    </hbox>
+
+    <script type="application/x-javascript" src="chrome://keysnail/content/pluginmanager.js"/>
+</window>

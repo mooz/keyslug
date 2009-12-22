@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+
+<!-- for findfiled -->
+<?xml-stylesheet href="chrome://mozapps/content/preferences/preferences.css"?>
+<?xml-stylesheet href="chrome://browser/skin/preferences/preferences.css"?>
+<?xml-stylesheet href="chrome://keysnail/skin/css/menuitem-icon.css"?>
+<?xml-stylesheet href="chrome://keysnail/skin/css/rcwizard.css"?>
+
+<!DOCTYPE dialog SYSTEM "chrome://keysnail/locale/rcwizard.dtd">
+
+<wizard id="keysnail-userscript-wizard" title="&keySnail.rcWizard.title;"
+        onload="rcWizard.onLoad();"
+        onwizardfinish="return rcWizard.onFinish();"
+        onwizardcancel="return rcWizard.onCancel();"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        width="650px"
+        height="600px"
+        >
+
+    <!-- ==================== START ==================== -->
+
+    <wizardpage pageid="start" next="create-rcfile"
+                id="keysnail-rcwizard-startpage"
+                onpageadvanced="return rcWizard.selectMethod();"
+                >
+        <description>
+            &keySnail.rcWizard.selectMethodDescription;
+        </description>
+        <menulist id="keysnail-rcwizard-selectmethod">
+            <menupopup>
+                <menuitem label="&keySnail.rcWizard.createRcFile;"
+                          name="create-rcfile"
+                          class="menuitem-iconic"
+                          image="chrome://keysnail/skin/icon/create.png"/>
+                <menuitem label="&keySnail.rcWizard.selectRcFile;"
+                          name="select-rcfile"
+                          class="menuitem-iconic"
+                          image="chrome://keysnail/skin/icon/select.png"/>
+            </menupopup>
+        </menulist>
+    </wizardpage>
+
+    <!-- ==================== CREATE : settings ==================== -->
+
+    <wizardpage pageid="create-rcfile"
+                onpageshow="rcWizard.updatePageCreate();rcWizard.updatePageScheme();"
+                description="&keySnail.rcWizard.createRcFileDescription;">
+        <description>&keySnail.rcWizard.createRcFileDescription;</description>
+        <vbox flex="1">
+            <groupbox>
+                <caption label="&keySnail.rcWizard.places;"/>
+                <description class="with-padding">&keySnail.rcWizard.places.description;</description>
+                <grid flex="1">
+                    <columns>
+                        <column />
+                        <column flex="1" />
+                    </columns>
+                    <rows>
+                        <row align="center">
+                            <label value="&keySnail.rcWizard.rcFileDestination;" style="text-align:right;" />
+                            <hbox align="center">
+                                <filefield id="keysnail-userscript-destination"
+                                           style="width: 25em;"
+                                           flex="2" />
+                                <button label="&keySnail.rcWizard.change;"
+                                        oncommand="rcWizard.changePathClicked(rcWizard.updatePageCreate);" />
+                            </hbox>
+                        </row>
+                        <row align="center">
+                            <label value="&keySnail.rcWizard.filename;" style="text-align:right;" />
+                            <radiogroup id="keysnail-userscript-filename-candidates">
+                                <radio id="keysnail-userscript-filename-dot"
+                                       label=".keysnail.tb.js" selected="true"
+                                       tooltiptext="&keySnail.rcWizard.filenameDotDiscription;"
+                                       />
+                                <radio id="keysnail-userscript-filename-underbar"
+                                       label="_keysnail.tb.js"
+                                       tooltiptext="&keySnail.rcWizard.filenameUBDiscription;"/>
+                            </radiogroup>
+                        </row>
+                    </rows>
+                </grid>
+            </groupbox>
+            <!-- scheme -->
+            <groupbox>
+                <caption label="&keySnail.rcWizard.scheme;"/>
+                <description class="with-padding">&keySnail.rcWizard.scheme.description;</description>
+                <grid flex="1">
+                    <columns>
+                        <column />
+                        <column flex="1" />
+                    </columns>
+                    <rows>
+                        <row>
+                            <label style="text-align:right;">&keySnail.rcWizard.label.scheme;: </label>
+                            <listbox id="keysnail-rcwizard-scheme-list"
+                                     onselect="rcWizard.schemeListOnSelect(event);"
+                                     rows="4"
+                                     flex="1">
+                                <!-- items will be added by updatePageScheme in rcwizard.js -->
+                            </listbox>
+                        </row>
+                        <separator style="height:10px;"/>
+                        <row align="center">
+                            <label style="text-align:right;">&keySnail.rcWizard.label.description;: </label>
+                            <description id="keysnail-rcwizard-scheme-description" />
+                        </row>
+                    </rows>
+                </grid>
+            </groupbox>
+        </vbox>
+    </wizardpage>
+
+    <!-- ==================== SELECT ==================== -->
+
+    <wizardpage pageid="select-rcfile"
+                onpageshow="rcWizard.updatePageSelect();"
+                description="&keySnail.rcWizard.selectRcFileDescription;">
+        <hbox align="center">
+            <label value="&keySnail.rcWizard.rcFilePlace;" />
+            <filefield id="keysnail-userscript-place"
+                       style="width: 25em;"
+                       flex="2" />
+            <button label="&keySnail.rcWizard.change;"
+                    oncommand="rcWizard.changePathClicked(rcWizard.updatePageSelect);" />
+        </hbox>
+    </wizardpage>
+
+    <script type="application/x-javascript" src="chrome://keysnail/content/rcwizard.js" />
+    <script type="application/x-javascript" src="chrome://keysnail/content/keycustomizer.js" />
+</wizard>

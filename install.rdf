@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+    <Description about="urn:mozilla:install-manifest">
+        <em:id>keysnail@mooz.github.com</em:id>
+        <em:type>2</em:type> <!-- type of the addon, 2 means the extension -->
+        <em:version>1.2.4</em:version>
+        <em:name>KeySnail</em:name>
+        <em:creator>mooz</em:creator>
+        <em:developer>mooz</em:developer>
+        <em:homepageURL>http://wiki.github.com/mooz/keysnail/</em:homepageURL>
+        <em:optionsURL>chrome://keysnail/content/preference.xul</em:optionsURL>
+	<em:iconURL>chrome://keysnail/skin/icon.png</em:iconURL>
+        <!-- en-US -->
+        <em:description>Bind function to the key sequence!</em:description>
+        <!-- ja -->
+        <em:localized>
+            <Description>
+                <em:locale>ja</em:locale>
+                <em:name>KeySnail</em:name>
+                <em:creator>mooz</em:creator>
+                <em:description>JavaScript の関数をキーシーケンスに割り当て</em:description>
+                <em:homepageURL>http://wiki.github.com/mooz/keysnail/keysnail-japanese</em:homepageURL>
+            </Description>
+        </em:localized>
+        <!-- Thunderbird -->
+        <em:targetApplication>
+            <Description>
+                <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
+                <em:minVersion>3.0b4pre</em:minVersion>
+                <em:maxVersion>3.0</em:maxVersion>
+            </Description>
+        </em:targetApplication>
+    </Description>
+
+</RDF>

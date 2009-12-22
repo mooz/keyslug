@@ -1,0 +1,41 @@
+<!ENTITY keySnail.rcWizard.title "Keysnail :: Init file setup">
+
+<!-- PAGE 1 -->
+
+<!ENTITY keySnail.rcWizard.selectMethodDescription "This wizard will create the init file.
+                                                    If you want to use the file already exists, choose 'Select init file place'">
+
+<!ENTITY keySnail.userscript.dialog.description1 "No init file are found.">
+<!ENTITY keySnail.userscript.dialog.description2 "init file is automatically created with the settings below.">
+
+<!-- menuitem -->
+
+<!ENTITY keySnail.rcWizard.createRcFile "Create a new one">
+<!ENTITY keySnail.rcWizard.selectRcFile "Select init file place">
+
+<!-- PAGE a-1 -->
+
+<!ENTITY keySnail.rcWizard.places "Place / File name">
+<!ENTITY keySnail.rcWizard.places.description "Select the init file name and destination.">
+<!ENTITY keySnail.rcWizard.createRcFileDescription "Select the initialization file name and destination.">
+<!ENTITY keySnail.rcWizard.rcFileDestination "Destination: ">
+<!ENTITY keySnail.rcWizard.filenameDotDiscription "Dot file genelally used in UNIX-like operating system.">
+<!ENTITY keySnail.rcWizard.filenameUBDiscription "Underbar type">
+
+<!-- PAGE a-2 -->
+
+<!ENTITY keySnail.rcWizard.scheme "Key bindings">
+<!ENTITY keySnail.rcWizard.scheme.description "Select default key bindings. The settings will be stored to the init file.<html:br/>You can change key bindings after this wizard from preference dialog.">
+
+<!ENTITY keySnail.rcWizard.label.scheme "Scheme">
+<!ENTITY keySnail.rcWizard.label.description "Description">
+
+<!-- PAGE b-1 -->
+
+<!ENTITY keySnail.rcWizard.selectRcFileDescription "Select the directory where init file exists">
+<!ENTITY keySnail.rcWizard.rcFilePlace "Place: ">
+
+<!-- common -->
+
+<!ENTITY keySnail.rcWizard.change "Change">
+<!ENTITY keySnail.rcWizard.filename "File name: ">

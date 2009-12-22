@@ -1,0 +1,12 @@
+## For Development
+content	keysnail	content/
+
+skin	keysnail	classic/1.0	skin/classic/keysnail/
+
+locale	keysnail	en-US	locale/en-US/
+locale	keysnail	ja	locale/ja/
+
+resource	keysnail-share	share/
+resource	keysnail-scheme	schemes/
+
+overlay chrome://messenger/content/messenger.xul	chrome://keysnail/content/messenger.xul
