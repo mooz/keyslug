@@ -91,11 +91,14 @@ KeySnail.UserScript = {
 
         this.initFilePath = aInitFilePath;
 
-        this.modules.display
-            .echoStatusBar("KeySnail :: [" + aInitFilePath + "] :: " +
-                           this.modules.util
-                           .getLocaleString("initFileLoaded", [(end - start) / 1000]),
-                           3000);
+        if (KeySnail.windowType === "mail:3pane")
+        {
+            this.modules.display
+                .echoStatusBar("KeySnail :: [" + aInitFilePath + "] :: " +
+                               this.modules.util
+                               .getLocaleString("initFileLoaded", [(end - start) / 1000]),
+                               3000);    
+        }
     },
 
     loadSubScript: function (aURI, aContext) {
@@ -694,21 +697,24 @@ KeySnail.UserScript = {
 
     openPluginManager: function () {
         var pluginManagerURL = "chrome://keysnail/content/pluginmanager.xul";
+        var tabmail = document.getElementById("tabmail");
 
-        var tabs = gBrowser.mTabContainer.childNodes;
-        for (var i = 0; i < tabs.length; ++i)
+        function tap(a, fun) {
+            fun(a);
+            return a;
+        }
+
+        for ([i, tabinfo] in Iterator(tabmail.tabInfo))
         {
-            if (tabs[i].linkedBrowser.currentURI.spec == pluginManagerURL)
+            if (tabinfo.browser && tabinfo.browser.contentDocument.location == pluginManagerURL)
             {
-                gBrowser.mTabContainer.selectedIndex = i;
-
-                tabs[i].linkedBrowser.reload();
-
+                tabinfo.browser.reload();
+                tabmail.tabContainer.selectedIndex = i;
                 return;
             }
         }
 
-        gBrowser.loadOneTab(pluginManagerURL, null, null, null, false);
+        this.modules.key.viewURI(pluginManagerURL);
     },
 
     isDisabledPlugin: function (aPath) {
@@ -738,7 +744,7 @@ KeySnail.UserScript = {
 
         var entry, uri;
         var replacePair = {
-            main: "chrome://browser/content/browser.xul"
+            main: "chrome://messenger/content/messenger.xul"
         };
 
         for each (entry in includeURI)
@@ -1229,7 +1235,7 @@ KeySnail.UserScript = {
             var setting = settings[key] || "undefined";
             var padding = Math.max(maxLen - key.length, 0) + 2;
 
-            aContentHolder.push('key.' + key + new Array(padding).join(" ") + '= "' + setting + '";');
+            aContentHolder.push('key.' + key + 'Key' + new Array(padding).join(" ") + '= "' + setting + '";');
         }
     },
 

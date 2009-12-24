@@ -61,28 +61,20 @@ SCHEME.keybindings["global"] = [
     [[SCHEME.specialKeys.help, "b"], "list_all_keybindings"],
     // Misc
     ["C-m", "generate_the_return_key_code"],
-    ["C-j", "open_the_bookmark_toolbar_item", true],
     [[SCHEME.specialKeys.help, "F"], "display_firefox_help"],
     // Focus
-    [["C-x", "l"], "focus_to_the_location_bar", true],
-    [["C-x", "g"], "focus_to_the_search_bar", true],
     [["C-x", "t"], "focus_to_the_first_textarea", true],
     [["C-x", "s"], "focus_to_the_first_button", true],
     // For Mac users, this will affect
     ["M-w", "copy_selected_text", true],
-    ["C-s", "incremental_search_forward_emacs", true],
-    ["C-r", "incremental_search_backward_emacs", true],
     // Tab / Window
     [["C-x", "k"], "close_tab_window"],
     [["C-x", "K"], "close_the_window"],
-    [["C-c", "u"], "undo_closed_tab"],
-    [["C-x", "n"], "open_new_window"],
     ["C-M-l", "select_next_tab"],
     ["C-M-h", "select_previous_tab"],
     // Misc
     [["C-x", "C-c"], "exit_firefox", true],
     [["C-x", "o"], "select_next_frame"],
-    [["C-x", "1"], "show_current_frame_only", true],
     [["C-x", "C-f"], "open_the_local_file", true],
     [["C-x", "C-s"], "save_current_page_to_the_file", true],
     [["C-c", "C-c", "C-v"], "display_javascript_console", true],
@@ -90,6 +82,8 @@ SCHEME.keybindings["global"] = [
 ];
 
 SCHEME.keybindings["edit"] = [
+    // selection
+    [["C-x", "h"], "select_whole_text", true],
     // Scroll
     [[["C-SPC"], ["C-@"]], "set_the_mark", true],
     ["C-o", "open_line"],
@@ -178,15 +172,7 @@ SCHEME.keybindings["caret"] = [
 
 var nonEditableCommon = [
     // Navigation
-    ["R", "reload_the_page", true],
-    ["B", "back"],
-    ["F", "forward"],
-    // text handling
-    [["C-x", "h"], "select_all", true],
-    // focus
-    ["f", "focus_to_the_first_textarea", true],
-    ["M-p", "focus_to_the_next_button"],
-    ["M-n", "focus_to_the_previous_button"]
+    [["C-x", "h"], "select_all", true]
 ];
 
 SCHEME.keybindings["view"]  = SCHEME.keybindings["view"].concat(nonEditableCommon);

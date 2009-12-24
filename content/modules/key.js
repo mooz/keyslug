@@ -1522,11 +1522,7 @@ KeySnail.Key = {
     },
 
     viewURI: function (aURI) {
-        var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-            .getService(Components.interfaces.nsIWindowMediator);
-        var mainWindow = wm.getMostRecentWindow("mail:3pane");
-
-        mainWindow.getBrowser().loadOneTab(aURI, null, null, null, false, false);
+        this.modules.util.viewURI(aURI);
     },
 
     // }} ======================================================================= //

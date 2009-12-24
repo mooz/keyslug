@@ -22,6 +22,10 @@ KeySnail.Command = {
             .getService(Components.interfaces.nsIAutoCompleteController);
     },
 
+    get mTabContainer() {
+        return (document.getElementById("tabmail") || {tabContainer : null}).tabContainer;
+    },
+
     init: function () {
         // load kill-ring
         try {
@@ -422,7 +426,9 @@ KeySnail.Command = {
     },
 
     inputHandleKey: function (aEvent, aCommand, aSelectedCommand, aDOMKey) {
-        if (aEvent.originalTarget.localName.toUpperCase() == 'TEXTAREA')
+        let localName = aEvent.originalTarget.localName.toUpperCase();
+
+        if (localName === 'TEXTAREA' || localName === 'HTML')
         {
             if (this.marked(aEvent))
                 goDoCommand(aSelectedCommand);
@@ -973,7 +979,7 @@ KeySnail.Command = {
 
             var clipboardText = command.getClipboardText();
 
-            if (clipboardText === null)
+            if (clipboardText === null || aEvent.originalTarget.localName === 'HTML')
             {
                 goDoCommand('cmd_paste');
                 return;
@@ -1015,8 +1021,14 @@ KeySnail.Command = {
         with (KeySnail.modules)
         {
 
-            var input = aEvent.originalTarget;
+            var input    = aEvent.originalTarget;
             var lastFunc = key.lastFunc;
+
+            if (input.localName === 'HTML')
+            {
+                display.echoStatusBar("Yank pop is disabled in this area");
+                return;
+            }
 
             if ((lastFunc !== command.yank && lastFunc !== command.yankPop)
                 || (lastFunc === command.yankPop && command.kill.popFailed))

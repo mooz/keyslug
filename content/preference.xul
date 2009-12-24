@@ -481,24 +481,24 @@
             <spacer height="10px" />
             <description>mooz &lt;stillpedant@gmail.com&gt; (c) 2009</description>
             <description class="text-link"
-                         onclick="ksPreference.modules.key.viewURI('http://wiki.github.com/mooz/keysnail/')"
+                         onclick="ksPreference.modules.util.viewURI('http://wiki.github.com/mooz/keysnail/')"
                          >Visit KeySnail wiki</description>
             <description class="text-link"
-                         onclick="ksPreference.modules.key.viewURI('http://d.hatena.ne.jp/mooz/')"
+                         onclick="ksPreference.modules.util.viewURI('http://d.hatena.ne.jp/mooz/')"
                          >Visit Authors blog (Japanese)</description>
             <spacer height="10px"/>
             <description>KeySnail using ...</description>
             <description class="text-link"
-                         onclick="ksPreference.modules.key.viewURI('http://jsbeautifier.org/')"
+                         onclick="ksPreference.modules.util.viewURI('http://jsbeautifier.org/')"
                          >Javascript beautifier</description>
             <description class="text-link"
-                         onclick="ksPreference.modules.key.viewURI('http://tango.freedesktop.org/Tango_Desktop_Project')"
+                         onclick="ksPreference.modules.util.viewURI('http://tango.freedesktop.org/Tango_Desktop_Project')"
                          >Tango icon</description>
             <description class="text-link"
-                         onclick="ksPreference.modules.key.viewURI('http://www.famfamfam.com/lab/icons/silk/')"
+                         onclick="ksPreference.modules.util.viewURI('http://www.famfamfam.com/lab/icons/silk/')"
                          >Silk icon set</description>
             <description class="text-link"
-                         onclick="ksPreference.modules.key.viewURI('http://coderepos.org/share/browser/lang/javascript/vimperator-plugins/trunk/pluginManager.js')"
+                         onclick="ksPreference.modules.util.viewURI('http://coderepos.org/share/browser/lang/javascript/vimperator-plugins/trunk/pluginManager.js')"
                          >Wiki parser (from pluginManager.js)</description>
         </vbox>
         <spacer flex="1"/>

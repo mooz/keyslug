@@ -38,6 +38,23 @@ KeySnail.Util = {
         return document.commandDispatcher.focusedElement;
     },
 
+    // from buffer.js of liberator
+    get win() {
+        let win = window.document.commandDispatcher.focusedWindow;
+        if (win && (win.scrollMaxX > 0 || win.scrollMaxY > 0))
+            return win;
+
+        win = window.content;
+        if (win.scrollMaxX > 0 || win.scrollMaxY > 0)
+            return win;
+
+        for (let frame in win.frames)
+            if (frame.scrollMaxX > 0 || frame.scrollMaxY > 0)
+                return frame;
+
+        return win;
+    },
+
     // File IO {{ =============================================================== //
 
     /**
@@ -811,6 +828,19 @@ KeySnail.Util = {
      */
     getLeafNameFromURL: function (aURL) {
         return aURL.slice(aURL.lastIndexOf("/") + 1);
+    },
+
+    // }} ======================================================================= //
+
+    // Pages {{ ================================================================= //
+
+    viewURI: function (aURI) {
+        var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+            .getService(Components.interfaces.nsIWindowMediator);
+        var mainWindow = wm.getMostRecentWindow("mail:3pane");
+
+        var tabmail = mainWindow.document.getElementById("tabmail");
+        tabmail.openTab("contentTab", { contentPage: aURI });
     },
 
     // }} ======================================================================= //

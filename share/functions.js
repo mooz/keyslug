@@ -6,32 +6,32 @@ var ksBuiltin = {
         __mode__: 0,
 
         open_the_new_tab: [
-            function() {
+            function(aEvent) {
                 document.getElementById("cmd_newNavigatorTab").doCommand();
             }, false],
 
         close_tab_window: [
-            function() {
-                BrowserCloseTabOrWindow();
+            function(aEvent) {
+                CloseTabOrWindow();
             }, false],
 
         undo_closed_tab: [
-            function() {
+            function(aEvent) {
                 undoCloseTab();
             }, false],
 
         select_next_tab: [
-            function() {
-                gBrowser.mTabContainer.advanceSelectedTab(1, true);
+            function(aEvent) {
+                command.mTabContainer.advanceSelectedTab(1, true);
             }, false],
 
         select_previous_tab: [
-            function() {
-                gBrowser.mTabContainer.advanceSelectedTab(-1, true);
+            function(aEvent) {
+                command.mTabContainer.advanceSelectedTab(-1, true);
             }, false],
 
         move_selected_tab_right: [
-            function() {
+            function(aEvent) {
                 if (gBrowser.mCurrentTab.previousSibling) {
                     gBrowser.moveTabTo(gBrowser.mCurrentTab, gBrowser.mCurrentTab._tPos - 1);
                 } else {
@@ -40,7 +40,7 @@ var ksBuiltin = {
             }, false],
 
         move_selected_tab_left: [
-            function() {
+            function(aEvent) {
                 if (gBrowser.mCurrentTab.nextSibling) {
                     gBrowser.moveTabTo(gBrowser.mCurrentTab, gBrowser.mCurrentTab._tPos + 1);
                 } else {
@@ -77,12 +77,12 @@ var ksBuiltin = {
         __mode__: 0,
 
         open_new_window: [
-            function() {
-                OpenBrowserWindow();
+            function(aEvent) {
+                window.OpenMessageInNewTab(aEvent);
             }, false],
 
         close_the_window: [
-            function() {
+            function(aEvent) {
                 closeWindow(true);
             }, false],
 
@@ -117,7 +117,7 @@ var ksBuiltin = {
             }, true],
 
         hide_titlebar: [
-            function() {
+            function(aEvent) {
                 var mainWindow = document.getElementById("main-window");
                 var control = document.getElementById("window-controls");
                 if (mainWindow.getAttribute("hidechrome") == "true") {
@@ -151,42 +151,42 @@ var ksBuiltin = {
         __mode__: 0,
 
         focus_to_the_location_bar: [
-            function() {
+            function(aEvent) {
                 command.focusToById("urlbar");
             }, true],
 
         focus_to_the_search_bar: [
-            function() {
+            function(aEvent) {
                 command.focusToById("searchbar");
             }, true],
 
         focus_to_the_first_textarea: [
-            function() {
+            function(aEvent) {
                 command.focusElement(command.elementsRetrieverTextarea, 0);
             }, true],
 
         focus_to_the_first_button: [
-            function() {
+            function(aEvent) {
                 command.focusElement(command.elementsRetrieverButton, 0);
             }, true],
 
         focus_to_the_next_button: [
-            function() {
+            function(aEvent) {
                 command.walkInputElement(command.elementsRetrieverButton, true, true);
             }, false],
 
         focus_to_the_previous_button: [
-            function() {
+            function(aEvent) {
                 command.walkInputElement(command.elementsRetrieverButton, false, true);
             }, false],
 
         focus_to_the_next_text_area: [
-            function() {
+            function(aEvent) {
                 command.walkInputElement(command.elementsRetrieverTextarea, true, true);
             }, false],
 
         focus_to_the_previous_text_area: [
-            function() {
+            function(aEvent) {
                 command.walkInputElement(command.elementsRetrieverTextarea, false, true);
             }, false]
     },
@@ -195,22 +195,22 @@ var ksBuiltin = {
         __mode__: 0,
 
         back: [
-            function() {
+            function(aEvent) {
                 BrowserBack();
             }, false],
 
         forward: [
-            function() {
+            function(aEvent) {
                 BrowserForward();
             }, false],
 
         reload_the_page: [
-            function() {
+            function(aEvent) {
                 BrowserReload();
             }, false],
 
         reload_the_page_ignore_cache: [
-            function() {
+            function(aEvent) {
                 BrowserReloadSkipCache();
             }, false],
 
@@ -248,12 +248,12 @@ var ksBuiltin = {
         __mode__: 0,
 
         display_firefox_help: [
-            function() {
+            function(aEvent) {
                 openHelpLink("firefox-help");
             }, false],
 
         exit_firefox: [
-            function() {
+            function(aEvent) {
                 goQuitApplication();
             }, false],
 
@@ -267,12 +267,12 @@ var ksBuiltin = {
         __mode__: 0,
 
         incremental_search_forward: [
-            function() {
+            function(aEvent) {
                 command.iSearchForward();
             }, true],
 
         incremental_search_backward: [
-            function() {
+            function(aEvent) {
                 command.iSearchBackward();
             }, true],
 
@@ -307,12 +307,12 @@ var ksBuiltin = {
             }, false],
 
         open_the_local_file: [
-            function() {
+            function(aEvent) {
                 BrowserOpenFileWindow();
             }, false],
 
         save_current_page_to_the_file: [
-            function() {
+            function(aEvent) {
                 saveDocument(window.content.document);
             }, false],
 
@@ -322,17 +322,17 @@ var ksBuiltin = {
             }, false],
 
         display_javascript_console: [
-            function() {
+            function(aEvent) {
                 toJavaScriptConsole();
             }, false],
 
         clear_javascript_console: [
-            function() {
+            function(aEvent) {
                 command.clearConsole();
             }, false],
 
         display_page_information: [
-            function() {
+            function(aEvent) {
                 BrowserPageInfo();
             }, false],
 
@@ -368,29 +368,51 @@ var ksBuiltin = {
             }, false],
 
         scroll_page_up: [
-            function() {
-                goDoCommand("cmd_scrollPageUp");
+            function(aEvent) {
+                key.generateKey(aEvent.originalTarget, KeyEvent.DOM_VK_PAGE_UP, true, 'keypress');
             }, false],
 
         scroll_page_down: [
-            function() {
-                goDoCommand("cmd_scrollPageDown");
+            function(aEvent) {
+                key.generateKey(aEvent.originalTarget, KeyEvent.DOM_VK_PAGE_DOWN, true, 'keypress');
             }, false],
 
         scroll_to_the_top_of_the_page: [
-            function() {
-                goDoCommand("cmd_scrollTop");
+            function(aEvent) {
+                key.generateKey(aEvent.originalTarget, KeyEvent.DOM_VK_HOME, true, 'keypress');
             }, false],
 
         scroll_to_the_bottom_of_the_page: [
-            function() {
-                goDoCommand("cmd_scrollBottom");
+            function(aEvent) {
+                key.generateKey(aEvent.originalTarget, KeyEvent.DOM_VK_END, true, 'keypress');
             }, false],
 
         select_all: [
-            function() {
+            function(aEvent) {
                 goDoCommand("cmd_selectAll");
-            }, false]
+            }, false],
+
+        // Thunderbird
+
+        scroll_messege_down: [
+            function (ev, arg) {
+                util.win.scrollByLines(arg || 1);
+            }, true],
+
+        scroll_messege_up: [
+            function (ev, arg) {
+                util.win.scrollByLines(arg || -1);
+            }, true],
+
+        scroll_messege_up_by_pages: [
+            function (ev, arg) {
+                util.win.scrollByPages(arg || 1);
+            }, true],
+
+        scroll_messege_down_by_pages: [
+            function (ev, arg) {
+                util.win.scrollByPages(arg || -1);
+            }, true]
     },
 
     // =========================================================================== //
@@ -454,13 +476,13 @@ var ksBuiltin = {
             }, false],
 
         undo: [
-            function() {
+            function(aEvent) {
                 display.echoStatusBar("Undo!", 2000);
                 goDoCommand("cmd_undo");
             }, false],
 
         redo: [
-            function() {
+            function(aEvent) {
                 display.echoStatusBar("Redo!", 2000);
                 goDoCommand("cmd_redo");
             }, false],
@@ -554,17 +576,17 @@ var ksBuiltin = {
             }, false],
 
         delete_forward_char: [
-            function() {
+            function(aEvent) {
                 goDoCommand("cmd_deleteCharForward");
             }, false],
 
         delete_backward_char: [
-            function() {
+            function(aEvent) {
                 goDoCommand("cmd_deleteCharBackward");
             }, false],
 
         delete_forward_word: [
-            function() {
+            function(aEvent) {
                 command.deleteForwardWord(ev);
             }, false],
 
@@ -660,23 +682,23 @@ var ksBuiltin = {
             }, false],
 
         scroll_line_down_caret: [
-            function() {
+            function(aEvent) {
                 util.getSelectionController().scrollLine(true);
             }, false],
 
         scroll_line_up_caret: [
-            function() {
+            function(aEvent) {
                 util.getSelectionController().scrollLine(false);
             }, false],
 
         scroll_right_caret: [
-            function() {
+            function(aEvent) {
                 goDoCommand("cmd_scrollRight");
                     util.getSelectionController().scrollHorizontal(false);
             }, false],
 
         scroll_left_caret: [
-            function() {
+            function(aEvent) {
                 util.getSelectionController().scrollHorizontal(true);
                 goDoCommand("cmd_scrollLeft");
             }, false],
@@ -691,17 +713,17 @@ var ksBuiltin = {
         __mode__: 0,
 
         reload_the_initialization_file: [
-            function() {
+            function(aEvent) {
                 userscript.reload();
             }, false],
 
         list_all_keybindings: [
-            function() {
+            function(aEvent) {
                 key.listKeyBindings();
             }, false],
 
         command_interpreter: [
-            function () {
+            function (aEvent) {
                 command.interpreter();
             }, false],
 

@@ -292,6 +292,7 @@ key.setEditKey('M-p', function () {
 }, '前のテキストエリアへフォーカス', false);
 
 key.setViewKey([["C-n"], ["j"]], function (aEvent) {
+    util.message("scroll down called");
     key.generateKey(aEvent.originalTarget, KeyEvent.DOM_VK_DOWN, true);
 }, '一行スクロールダウン', false);
 

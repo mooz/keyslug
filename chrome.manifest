@@ -10,3 +10,7 @@ resource	keysnail-share	share/
 resource	keysnail-scheme	schemes/
 
 overlay chrome://messenger/content/messenger.xul	chrome://keysnail/content/messenger.xul
+overlay	chrome://messenger/content/messenger.xul	chrome://keysnail/content/prompt.xul
+overlay	chrome://messenger/content/messengercompose/messengercompose.xul	chrome://keysnail/content/prompt.xul
+overlay	chrome://messenger/content/addressbook/addressbook.xul	chrome://keysnail/content/prompt.xul
+

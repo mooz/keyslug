@@ -49,9 +49,6 @@ KeySnail.Ext = function () {
 
     var self = {
         init: function () {
-            if (KeySnail.windowType != "mail:3pane")
-                return;
-
             modules = this.modules;
         },
 
