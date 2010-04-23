@@ -133,8 +133,8 @@ SCHEME.keybindings["view"] = [
     // Scroll
     [[["C-n"], ["j"]], "scroll_line_down"],
     [[["C-p"], ["k"]], "scroll_line_up"],
-    [[["C-f"], ["."]], "scroll_left"],
-    [[["C-b"], [","]], "scroll_right"],
+    [[["C-f"], ["."]], "scroll_right"],
+    [[["C-b"], [","]], "scroll_left"],
     [[["M-v"], ["b"]], "scroll_page_up"],
     ["C-v", "scroll_page_down"],
     [[["M-<"], ["g"]], "scroll_to_the_top_of_the_page", true],
